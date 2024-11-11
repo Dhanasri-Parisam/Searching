@@ -1,0 +1,60 @@
+//*=======================================================================================================
+lastOccurrence = mid;  // Update last occurrence index
+			 low=mid+1; //last occurance
+
+//int solve(int n, int key, vector < int > & v) {
+  int res = -1;
+  for (int i = n - 1; i >= 0; i--) {
+    if (v[i] == key) {
+      res = i;
+      break;
+    }
+  }
+  return res;
+
+
+firstOccurrence = mid;  // Update first occurrence index
+			 high=mid-1; //first occurance
+
+//int solve(int n, int key, vector < int > & v) {
+  int res = -1;
+  for (int i =0;i<n;i++) {
+    if (v[i] == key) {
+      res = i;
+      break;
+    }
+  }
+  return res;
+
+
+==========================================================================================================**/
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int n[] = {1, 2, 3, 4, 5, 5};
+    int size = sizeof(n) / sizeof(n[0]);
+    int low = 0, high = size - 1;
+    int target = 5;
+    int lastOccurrence = -1;
+
+    while (low <= high) {
+        int mid = low + (high - low) / 2;
+        if (n[mid] == target) {
+            lastOccurrence = mid;  // Update last occurrence index
+			     low=mid+1; //last occurance
+        } else if (n[mid] < target) {
+            low = mid + 1;
+        } else {
+            high = mid - 1;
+        }
+    }
+
+    if (lastOccurrence != -1) {
+        cout << "Last occurrence of " << target << " is at index: " << lastOccurrence << endl;
+    } else {
+        cout << "Target not found in the array." << endl;
+    }
+
+    return 0;
+}
